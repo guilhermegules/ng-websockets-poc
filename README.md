@@ -1,27 +1,39 @@
-# NgWebsockets
+# Ng WebSockets POC
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
+## Running
 
-## Development server
+```bash
+npm install # install all dependencies
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```bash
+npm start # starts the app in port 4200
+```
 
-## Code scaffolding
+```bash
+npm test # run all unit tests
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+npm run build # build application ready for production
+```
 
-## Build
+```bash
+# Running web socket server, go to the server folder
+cd web-socket-server
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## install dependencies
+npm install
 
-## Running unit tests
+## run server
+npm start
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Demonstration
 
-## Running end-to-end tests
+![](./NgWebsockets.gif)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Useful links
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- [RxJS WebSocket](https://rxjs.dev/api/webSocket/webSocket)
+- [WebSockets API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
