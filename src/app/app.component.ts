@@ -70,7 +70,7 @@ export class AppComponent implements OnInit, OnDestroy {
         },
         error: (error) => {
           console.log(error);
-          this.webSocketService.trowError();
+          this.webSocketService.throwError();
         },
         complete: () => console.log('Completed'),
       });

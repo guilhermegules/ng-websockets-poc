@@ -26,7 +26,7 @@ export class WebSocketService {
     this.webSocketSubject.complete();
   }
 
-  public trowError() {
+  public throwError() {
     this.webSocketSubject.error({ code: 400, reason: 'Some error' });
   }
 
