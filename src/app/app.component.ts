@@ -45,6 +45,10 @@ export class AppComponent implements OnInit, OnDestroy {
     console.log('Connection closed');
   }
 
+  public throwError() {
+    this.webSocketService.throwError();
+  }
+
   public openConnection() {
     this.webSocketService.openConnection();
     console.log('Connection reopened');
@@ -68,10 +72,7 @@ export class AppComponent implements OnInit, OnDestroy {
             `Message from: ${message.source}, with: ${message.content}`
           );
         },
-        error: (error) => {
-          console.log(error);
-          this.webSocketService.throwError();
-        },
+        error: (error) => console.log(error),
         complete: () => console.log('Completed'),
       });
   }

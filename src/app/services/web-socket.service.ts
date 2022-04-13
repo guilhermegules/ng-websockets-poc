@@ -27,7 +27,8 @@ export class WebSocketService {
   }
 
   public throwError() {
-    this.webSocketSubject.error({ code: 400, reason: 'Some error' });
+    console.log('Error will close the connection');
+    this.webSocketSubject.error({ code: 4000, reason: 'Some error' });
   }
 
   public openConnection() {

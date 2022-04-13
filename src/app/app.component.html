@@ -14,8 +14,11 @@
     <button mat-raised-button color="primary" (click)="pushMessage()">
       Publish message
     </button>
-    <button mat-raised-button color="warn" (click)="closeConnection()">
+    <button mat-raised-button (click)="closeConnection()">
       Close connection
+    </button>
+    <button mat-raised-button color="warn" (click)="throwError()">
+      Throw Error
     </button>
     <button mat-raised-button (click)="openConnection()">
       Open connection
