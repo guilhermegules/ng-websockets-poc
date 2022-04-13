@@ -1,0 +1,51 @@
+:host {
+  h1 {
+    text-align: center;
+    margin: 15px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+
+    &__buttons-container {
+      display: flex;
+      justify-content: space-between;
+
+      @media screen and (max-width: 550px) {
+        flex-direction: column;
+
+        button {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+
+  .messages {
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+
+    div {
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    @media screen and (max-width: 550px) {
+      flex-direction: column;
+
+      div {
+        margin-top: 10px;
+      }
+
+      h2 {
+        margin-top: 10px;
+      }
+    }
+  }
+}

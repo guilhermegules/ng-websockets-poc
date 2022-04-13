@@ -2,8 +2,7 @@
   "name": "ng-websockets",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --open",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -11,10 +10,12 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~13.1.0",
+    "@angular/cdk": "^13.3.2",
     "@angular/common": "~13.1.0",
     "@angular/compiler": "~13.1.0",
     "@angular/core": "~13.1.0",
     "@angular/forms": "~13.1.0",
+    "@angular/material": "^13.3.2",
     "@angular/platform-browser": "~13.1.0",
     "@angular/platform-browser-dynamic": "~13.1.0",
     "@angular/router": "~13.1.0",

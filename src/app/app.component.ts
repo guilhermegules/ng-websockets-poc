@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 
 import { WebSocketClientMessage } from './interfaces/websocket-message.model';
 import { WebSocketService } from './services/web-socket.service';
@@ -9,10 +10,12 @@ import { WebSocketService } from './services/web-socket.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   public received: WebSocketClientMessage[] = [];
   public sent: WebSocketClientMessage[] = [];
   public formGroup!: FormGroup;
+
+  private destroyed$ = new Subject<void>();
 
   constructor(
     private webSocketService: WebSocketService,
@@ -21,20 +24,12 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
     this.initForm();
+    this.listenMessages();
+  }
 
-    this.webSocketService.listen().subscribe({
-      next: (message) => {
-        this.received.push({ ...message });
-        console.log(
-          `Message from: ${message.source}, with: ${message.content}`
-        );
-      },
-      error: (error) => {
-        console.log(error);
-        this.webSocketService.trowError();
-      },
-      complete: () => console.log('Completed'),
-    });
+  public ngOnDestroy(): void {
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 
   public pushMessage() {
@@ -47,15 +42,37 @@ export class AppComponent implements OnInit {
 
   public closeConnection() {
     this.webSocketService.closeConnection();
+    console.log('Connection closed');
   }
 
   public openConnection() {
     this.webSocketService.openConnection();
+    console.log('Connection reopened');
+    this.listenMessages();
   }
 
   public initForm() {
     this.formGroup = this.fb.group({
       message: [null],
     });
+  }
+
+  private listenMessages() {
+    this.webSocketService
+      .listen()
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe({
+        next: (message) => {
+          this.received.push({ ...message });
+          console.log(
+            `Message from: ${message.source}, with: ${message.content}`
+          );
+        },
+        error: (error) => {
+          console.log(error);
+          this.webSocketService.trowError();
+        },
+        complete: () => console.log('Completed'),
+      });
   }
 }

@@ -1,25 +1,46 @@
-<form [formGroup]="formGroup">
-  <input type="text" formControlName="message" />
-  <button (click)="pushMessage()">Publish message</button>
+<h1>WebSockets With Angular</h1>
+
+<form [formGroup]="formGroup" class="form">
+  <mat-form-field appearance="fill">
+    <mat-label>Message</mat-label>
+    <input
+      matInput
+      placeholder="Type your message"
+      value="message"
+      formControlName="message"
+    />
+  </mat-form-field>
+  <div class="form__buttons-container">
+    <button mat-raised-button color="primary" (click)="pushMessage()">
+      Publish message
+    </button>
+    <button mat-raised-button color="warn" (click)="closeConnection()">
+      Close connection
+    </button>
+    <button mat-raised-button (click)="openConnection()">
+      Open connection
+    </button>
+  </div>
 </form>
 
-<button (click)="closeConnection()">Close connection</button>
-<button (click)="openConnection()">Open connection</button>
+<section class="messages">
+  <div>
+    <h2>Sent messages</h2>
+    <mat-list>
+      <mat-list-item *ngFor="let item of sent">
+        Source: {{ item.source }} -> Content {{ item.content }}
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </div>
 
-<div>
-  <h2>Sent messages</h2>
-  <ul>
-    <li *ngFor="let item of sent">
-      Source: {{ item.source }} -> Content {{ item.content }}
-    </li>
-  </ul>
-</div>
-
-<div>
-  <h2>Received messages</h2>
-  <ul>
-    <li *ngFor="let item of received">
-      Source: {{ item.source }} -> Content {{ item.content }}
-    </li>
-  </ul>
-</div>
+  <div>
+    <h2>Received messages</h2>
+    <mat-list>
+      <mat-list-item *ngFor="let item of received">
+        Source: {{ item.source }} -> Content {{ item.content }}
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</section>
